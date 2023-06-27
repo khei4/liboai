@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(oai)
 
 find_package(nlohmann_json CONFIG REQUIRED)
-find_package(CURL CONFIG REQUIRED)
+# find_package(CURL CONFIG REQUIRED)
 
 add_library(oai
 components/audio.cpp
@@ -25,7 +25,8 @@ core/response.cpp
 target_compile_features(oai PRIVATE cxx_std_17)
 
 target_link_libraries(oai PRIVATE nlohmann_json::nlohmann_json)
-target_link_libraries(oai PRIVATE CURL::libcurl)
+target_link_libraries(oai PRIVATE curl)
+set(CMAKE_CXX_FLAGS "-fPIC")
 
 install(TARGETS oai DESTINATION lib)
 #not needed anymore
